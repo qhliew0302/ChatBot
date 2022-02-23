@@ -1,0 +1,31 @@
+{"intents": [
+    {"tag": "greetings",
+     "patterns": ["Hi", "Hey", "Is anyone there?", "Hello", "Hay", "Yo"],
+     "responses": ["Hello", "Hi", "Hi there"]
+    },
+    {"tag": "farewell",
+     "patterns": ["Bye", "See you later", "Goodbye", "See ya", "Cya"],
+     "responses": ["See you later", "Have a nice day", "Bye! Come back again"]
+    },
+    {"tag": "thanks",
+     "patterns": ["Thanks", "Thank you", "That's helpful", "Thanks for the help"],
+     "responses": ["Happy to help!", "Any time!", "My pleasure", "You're most welcome!"]
+    },
+    {"tag": "sad",
+     "patterns": ["terrible", "Im done with life", "tired of life", "feel hopeless", "in pain", "so empty", "breaking down", "tearing up", "not happy", "sad", "so sad", "crying", "depressed", "unhappy", "not content", "dont feel good"],
+     "responses": ["You are sad"]
+    },
+    {"tag": "anger",
+    "patterns": ["im mad", "livid", "rage", "raging", "furious", "angry", "pissed off"],
+    "responses": ["You are mad"]
+    },
+    {"tag": "fear",
+    "patterns": ["anxious", "anxiety", "stressed", "uneasy", "unease", "worry", "distress", "agitated", "panic", "stressed out"],
+    "responses": ["You are worried"]
+    },
+    {"tag": "joy",
+    "patterns": ["happy", "really happy", "pleased", "blessed", "love", "cheerful", "merry", "delighted", "feel good", "not sad", "not depressed"],
+    "responses": ["You are happy"]
+    }
+]
+}
