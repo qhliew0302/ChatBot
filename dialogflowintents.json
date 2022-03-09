@@ -12,11 +12,11 @@
      "responses": ["Happy to help!", "Any time!", "My pleasure", "You're most welcome!"]
     },
     {"tag": "sad",
-     "patterns": ["terrible", "Im done with life", "tired of life", "feel hopeless", "in pain", "so empty", "breaking down", "tearing up", "not happy", "sad", "so sad", "crying", "depressed", "unhappy", "not content", "dont feel good"],
+     "patterns": ["terrible", "done with life", "tired of life", "hopeless", "in pain", "empty", "breaking down", "tearing up", "not happy", "sad", "crying", "depressed", "unhappy", "not content", "dont feel good"],
      "responses": ["You are sad"]
     },
-    {"tag": "anger",
-    "patterns": ["im mad", "livid", "rage", "raging", "furious", "angry", "pissed off"],
+    {"tag": "angry",
+    "patterns": ["mad", "livid", "rage", "raging", "furious", "angry", "pissed off"],
     "responses": ["You are mad"]
     },
     {"tag": "fear",
@@ -24,7 +24,7 @@
     "responses": ["You are worried"]
     },
     {"tag": "joy",
-    "patterns": ["happy", "really happy", "pleased", "blessed", "love", "cheerful", "merry", "delighted", "feel good", "not sad", "not depressed"],
+    "patterns": ["happy", "happy", "pleased", "blessed", "love", "cheerful", "merry", "delighted", "good", "not sad", "not depressed"],
     "responses": ["You are happy"]
     }
 ]
