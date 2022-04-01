@@ -1,0 +1,18 @@
+{"intents": [
+    {"tag": "neutral",
+    "responses": ["Oh okay", "Hmm", "I see", "Oh okay, can you elaborate a bit more?"]
+    },
+    {"tag": "happy",
+    "responses": ["I'm so happy for you!", "That's great. I'm happy that you're happy", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the joy you feel" ]
+    },
+    {"tag": "sad",
+     "responses": ["I feel your pain. It's not the end of the world.", "I understand, but you have more to live for.", "Sometimes taking a break helps. Do something you like and enjoy.", "What can I do to help you?", "It's alright to cry a little", "I'm all ears if you want to talk", "I know it’s tough, but this feeling won’t last forever.", "I am so proud of you for opening up, I want you to know that you are not alone in this.", "I care for your wellbeing and I'm proud of you for opening up about your feelings."]
+    },
+    {"tag": "love",
+    "responses": ["I'm so happy for you!", "It's nice to know you feel loved", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the love you feel" ]
+    },
+    {"tag": "anger",
+    "responses": ["I don't blame you for being angry", "That's terrible", "I'm sorry you're upset", "I would've been angry too if I were you", "Is there anything I can do?", "That's so frustrating", "Things can be rough sometimes, take a few deep breaths"]
+    }
+]
+}

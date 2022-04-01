@@ -1,4 +1,7 @@
 import pickle
+import json
+import random
+
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
 
@@ -8,6 +11,8 @@ with open('tokenizer.pickle', 'rb') as handle:
 classes = ["neutral", "happy", "sad", "love", "anger"]
 
 model = load_model("therabot.h5")
+
+responses_json = json.load(open('responses.json'))
 
 emotion_scores = {
     "neutral": 0,
@@ -37,35 +42,24 @@ def get_highest_key():
 
 def consolidation_message(highest_key):
     if highest_key == 'neutral':
-        return "You are Neutral"
+        return "You seem to be a neutral person with their feelings in check"
     elif highest_key == 'happy':
-        return "You are Happy"
+        return "You seem to be quite content with your life. I wish you stay this way!"
     elif highest_key == 'sad':
-        return "You are Sad"
+        return "You seem to be feeling a little heavy. I would recommend talking to a close friend or a therapist."
     elif highest_key == 'love':
-        return "You are Love"
+        return "Your life seems to be filled with love, I hope you feel this way forever!"
     elif highest_key == 'anger':
-        return "You are Anger"
+        return "You sound a little cross, I would recommend doing something that makes you cal"
     else:
         return "Goodbye! Take care"
 
 
 def reply(detected_intent):
-    if detected_intent == 'neutral':
-        print("Therabot: Neutral detected")
-        return "Neutral detected"
-    elif detected_intent == 'happy':
-        print("Therabot: Happy detected!")
-        return "Happy detected"
-    elif detected_intent == 'sad':
-        print("Therabot: Sad detected")
-        return "Sad detected"
-    elif detected_intent == 'love':
-        print("Therabot: Love detected")
-        return "Love detected"
-    elif detected_intent == 'anger':
-        print("Therabot: Anger detected")
-        return "Anger detected"
+    for i in range(5):
+        if responses_json['intents'][i]['tag'] == detected_intent:
+            #print(responses_json['intents'][i]['responses'][random.randrange(0, len(responses_json['intents'][i]['responses']))])
+            return str(responses_json['intents'][i]['responses'][random.randrange(0, len(responses_json['intents'][i]['responses']))])
 
 
 def fallback_intent():
@@ -95,13 +89,13 @@ def responses(user_message):
         y_prob = model.predict(data_test)
         pred = predict_emotion(data_test, y_prob)
         highest_emotion_confidence = y_prob[0][pred]
+        emotion_score(y_prob)
         if highest_emotion_confidence > 0.33:
+            #print(emotion_scores)
             return reply(classes[pred])
         else:
+            #print(emotion_scores)
             return fallback_intent()
-        emotion_score(y_prob)
     elif user_message.lower() == "quit":
         highest_key = get_highest_key()
         return consolidation_message(highest_key)
-
-
