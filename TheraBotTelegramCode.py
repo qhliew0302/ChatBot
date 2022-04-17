@@ -1,6 +1,7 @@
 import pickle
 import json
 import random
+import os.path
 
 from keras.models import load_model
 from keras.preprocessing.sequence import pad_sequences
@@ -23,20 +24,72 @@ emotion_scores = {
 }
 
 
-def emotion_score(y_prob):
-    emotion_scores["neutral"] += y_prob[0][0]
-    emotion_scores["happy"] += y_prob[0][1]
-    emotion_scores["sad"] += y_prob[0][2]
-    emotion_scores["love"] += y_prob[0][3]
-    emotion_scores["anger"] += y_prob[0][4]
+def emotion_score(y_prob, user_id):
+    filename = str(user_id) + '.txt'
+    file_exists = os.path.exists(filename)
+
+    if file_exists:
+        f = open(filename, 'r')
+        score_str = f.readlines()
+        i = 0
+        for emotion in emotion_scores:
+            score = float(score_str[i])
+            emotion_scores[emotion] = score
+            print(str(user_id) + str(emotion_scores[emotion]))
+            i = i + 1
+        emotion_scores["neutral"] += y_prob[0][0]
+        emotion_scores["happy"] += y_prob[0][1]
+        emotion_scores["sad"] += y_prob[0][2]
+        emotion_scores["love"] += y_prob[0][3]
+        emotion_scores["anger"] += y_prob[0][4]
+        f.close()
+        f = open(filename, 'w')
+        for emotion in emotion_scores:
+            print(str(user_id) + str(emotion_scores[emotion]))
+            f.write(str(emotion_scores[emotion]) + '\n')
+        f.close()
+    else:
+
+        for emotion in emotion_scores:
+            emotion_scores[emotion] = 0
+
+        emotion_scores["neutral"] += y_prob[0][0]
+        emotion_scores["happy"] += y_prob[0][1]
+        emotion_scores["sad"] += y_prob[0][2]
+        emotion_scores["love"] += y_prob[0][3]
+        emotion_scores["anger"] += y_prob[0][4]
+
+        f = open(filename, 'w')
+        for emotion in emotion_scores:
+            print(str(user_id) + str(emotion_scores[emotion]) + " ")
+            f.write(str(emotion_scores[emotion]) + '\n')
+        f.close()
 
 
-def get_highest_key():
+def get_highest_key(user_id):
+    highest_key = ""
+    filename = str(user_id) + '.txt'
+    f = open(filename, 'r')
     highest_value = 0
+    score_str = f.readlines()
+    i = 0
+    for emotion in emotion_scores:
+        score = float(score_str[i])
+        emotion_scores[emotion] = score
+        print(str(user_id) + str(emotion_scores[emotion]))
+        i = i + 1
+
     for key in emotion_scores.keys():
         if emotion_scores[key] >= highest_value:
             highest_value = emotion_scores[key]
             highest_key = key
+
+    f.close()
+    f = open(filename, 'w')
+    for j in range(5):
+        f.write("0" + '\n')
+    f.close()
+
     return highest_key
 
 
@@ -58,8 +111,9 @@ def consolidation_message(highest_key):
 def reply(detected_intent):
     for i in range(5):
         if responses_json['intents'][i]['tag'] == detected_intent:
-            #print(responses_json['intents'][i]['responses'][random.randrange(0, len(responses_json['intents'][i]['responses']))])
-            return str(responses_json['intents'][i]['responses'][random.randrange(0, len(responses_json['intents'][i]['responses']))])
+            # print(responses_json['intents'][i]['responses'][random.randrange(0, len(responses_json['intents'][i]['responses']))])
+            return str(responses_json['intents'][i]['responses'][
+                           random.randrange(0, len(responses_json['intents'][i]['responses']))])
 
 
 def fallback_intent():
@@ -83,19 +137,19 @@ def predict_emotion(data_test, y_prob):
     return pred
 
 
-def responses(user_message):
+def responses(user_message, user_id):
     if user_message != "quit":
         data_test = analyze_message(user_message)
         y_prob = model.predict(data_test)
         pred = predict_emotion(data_test, y_prob)
         highest_emotion_confidence = y_prob[0][pred]
-        emotion_score(y_prob)
+        emotion_score(y_prob, user_id)
         if highest_emotion_confidence > 0.33:
-            #print(emotion_scores)
+            print(emotion_scores)
             return reply(classes[pred])
         else:
-            #print(emotion_scores)
+            print(emotion_scores)
             return fallback_intent()
     elif user_message.lower() == "quit":
-        highest_key = get_highest_key()
+        highest_key = get_highest_key(user_id)
         return consolidation_message(highest_key)

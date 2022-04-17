@@ -18,9 +18,9 @@ def help_command(update, context):
 
 
 def handle_message(update, context):
-
+    user_id = update.message.chat.id
     text = str(update.message.text).lower()
-    response = Tb.responses(text)
+    response = Tb.responses(text, user_id)
     print(response)
     update.message.reply_text(response)
 
