@@ -35,7 +35,7 @@ def emotion_score(y_prob, user_id):
         for emotion in emotion_scores:
             score = float(score_str[i])
             emotion_scores[emotion] = score
-            print(str(user_id) + str(emotion_scores[emotion]))
+            # print(str(user_id) + str(emotion_scores[emotion]))
             i = i + 1
         emotion_scores["neutral"] += y_prob[0][0]
         emotion_scores["happy"] += y_prob[0][1]
@@ -45,7 +45,7 @@ def emotion_score(y_prob, user_id):
         f.close()
         f = open(filename, 'w')
         for emotion in emotion_scores:
-            print(str(user_id) + str(emotion_scores[emotion]))
+            # print(str(user_id) + str(emotion_scores[emotion]))
             f.write(str(emotion_scores[emotion]) + '\n')
         f.close()
     else:
@@ -61,7 +61,7 @@ def emotion_score(y_prob, user_id):
 
         f = open(filename, 'w')
         for emotion in emotion_scores:
-            print(str(user_id) + str(emotion_scores[emotion]) + " ")
+            # print(str(user_id) + str(emotion_scores[emotion]) + " ")
             f.write(str(emotion_scores[emotion]) + '\n')
         f.close()
 
@@ -76,7 +76,7 @@ def get_highest_key(user_id):
     for emotion in emotion_scores:
         score = float(score_str[i])
         emotion_scores[emotion] = score
-        print(str(user_id) + str(emotion_scores[emotion]))
+        # print(str(user_id) + str(emotion_scores[emotion]))
         i = i + 1
 
     for key in emotion_scores.keys():
@@ -145,10 +145,10 @@ def responses(user_message, user_id):
         highest_emotion_confidence = y_prob[0][pred]
         emotion_score(y_prob, user_id)
         if highest_emotion_confidence > 0.33:
-            print(emotion_scores)
+            # print(emotion_scores)
             return reply(classes[pred])
         else:
-            print(emotion_scores)
+            # print(emotion_scores)
             return fallback_intent()
     elif user_message.lower() == "quit":
         highest_key = get_highest_key(user_id)

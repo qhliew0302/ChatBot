@@ -1,18 +1,18 @@
 {"intents": [
     {"tag": "neutral",
-    "responses": ["Oh okay", "Hmm", "I see", "Oh okay, can you elaborate a bit more?"]
+    "responses": ["Oh okay", "Hmm", "I see", "Oh okay, can you elaborate a bit more?", "Is that so?", "Ah, I see", "Interesting", "I haven't thought about this before", "I see where you're coming from"]
     },
     {"tag": "happy",
-    "responses": ["I'm so happy for you!", "That's great. I'm happy that you're happy", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the joy you feel" ]
+    "responses": ["I'm so happy for you!", "That's great. I'm happy that you're happy", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the joy you feel" , "I'm happy to hear that", "Yayyyy", "This does put a smile on my face", "That amazing to hear", "Ya, that's some great new", "Good job!", "I'm applauding you", "Let's goooooooooooo!", ]
     },
     {"tag": "sad",
-     "responses": ["I feel your pain. It's not the end of the world.", "I understand, but you have more to live for.", "Sometimes taking a break helps. Do something you like and enjoy.", "What can I do to help you?", "It's alright to cry a little", "I'm all ears if you want to talk", "I know it’s tough, but this feeling won’t last forever.", "I am so proud of you for opening up, I want you to know that you are not alone in this.", "I care for your wellbeing and I'm proud of you for opening up about your feelings."]
+     "responses": ["I feel your pain. It's not the end of the world.", "I understand, but you have more to live for.", "Sometimes taking a break helps. Do something you like and enjoy.", "What can I do to help you?", "It's alright to cry a little", "I'm all ears if you want to talk", "I know it’s tough, but this feeling won’t last forever.", "I am so proud of you for opening up, I want you to know that you are not alone in this.", "I care for your wellbeing and I'm proud of you for opening up about your feelings.", "Don't lose hope, there is always more in store for you", "You could start by taking a few deep breaths", "Brighter days will come", "It's not going to be like this forever", "You're stronger than you think"]
     },
     {"tag": "love",
-    "responses": ["I'm so happy for you!", "It's nice to know you feel loved", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the love you feel" ]
+    "responses": ["I'm so happy for you!", "It's nice to know you feel loved", "Amazing!", "Well that makes me happy to hear", "So glad to hear that", "You deserve the love you feel", "Love is a pure feeling, I am glad you feel it right now", "I am glad you feel this way", "I hope you always feel love for yourself and people around you", "Love is a beautiful feeling"]
     },
     {"tag": "anger",
-    "responses": ["I don't blame you for being angry", "That's terrible", "I'm sorry you're upset", "I would've been angry too if I were you", "Is there anything I can do?", "That's so frustrating", "Things can be rough sometimes, take a few deep breaths"]
+    "responses": ["I don't blame you for being angry", "That's terrible", "I'm sorry you're upset", "I would've been angry too if I were you", "Is there anything I can do?", "That's so frustrating", "Things can be rough sometimes, take a few deep breaths", "Don't let it get to you", "I understand how you feel, I would be angry too if I was you", "I understand your anger, but this feeling does not define who you are"]
     }
 ]
 }
