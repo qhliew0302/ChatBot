@@ -13,7 +13,7 @@ classes = ["neutral", "happy", "sad", "love", "anger"]
 
 model = load_model("therabot.h5")
 
-responses_json = json.load(open('responses.json'))
+responses_json = json.load(open('responses.json', encoding="utf8"))
 
 emotion_scores = {
     "neutral": 0,
@@ -95,15 +95,15 @@ def get_highest_key(user_id):
 
 def consolidation_message(highest_key):
     if highest_key == 'neutral':
-        return "You seem to be a neutral person with their feelings in check"
+        return "You seem like a balance person with a balance life. I'm glad to have talked to you. I'm here anytime you want to talk. Oh, and have a great day!. 😇"
     elif highest_key == 'happy':
-        return "You seem to be quite content with your life. I wish you stay this way!"
+        return " I loved that you're such a happy individual. It was nice talking to you. Have an amazing day! ☺️"
     elif highest_key == 'sad':
-        return "You seem to be feeling a little heavy. I would recommend talking to a close friend or a therapist."
+        return "Life has its ups and downs. I believe you can overcome just about anything if you put your mind to it. Feel free to talk to me anytime you wish, I'll be here waiting for you. Stay strong! ❤️"
     elif highest_key == 'love':
-        return "Your life seems to be filled with love, I hope you feel this way forever!"
+        return "Your life seems to be filled with love, I hope you feel this way forever! Let's talk again when you're free. I'm always here for you. 💛"
     elif highest_key == 'anger':
-        return "You sound a little cross, I would recommend doing something that makes you cal"
+        return "'Holding onto anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned.' -Buddha. Talk to me anytime you wish. See ya! ☺️"
     else:
         return "Goodbye! Take care"
 
@@ -123,9 +123,11 @@ def fallback_intent():
 def analyze_message(user_message):
     text = [user_message]
     sequences_test = tokenizer.texts_to_sequences(text)
+    print(sequences_test)
     MAX_SEQUENCE_LENGTH = 30
     data_int_t = pad_sequences(sequences_test, padding='pre', maxlen=(MAX_SEQUENCE_LENGTH - 5))
     data_test = pad_sequences(data_int_t, padding='post', maxlen=(MAX_SEQUENCE_LENGTH))
+    print(data_test)
     return data_test
 
 
@@ -141,10 +143,12 @@ def responses(user_message, user_id):
     if user_message != "quit":
         data_test = analyze_message(user_message)
         y_prob = model.predict(data_test)
+        print("y_prob", y_prob)
         pred = predict_emotion(data_test, y_prob)
+        print("pred", pred)
         highest_emotion_confidence = y_prob[0][pred]
         emotion_score(y_prob, user_id)
-        if highest_emotion_confidence > 0.33:
+        if highest_emotion_confidence > 0.30:
             # print(emotion_scores)
             return reply(classes[pred])
         else:

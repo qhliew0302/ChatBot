@@ -9,19 +9,20 @@ def start_command(update, context):
     name = update.message.chat.first_name
     update.message.reply_text('Hi ' + name + '!')
     update.message.reply_text('I am TheraBot!')
-    update.message.reply_text('Nice to meet you :)')
+    update.message.reply_text('Nice to meet you 😊')
     update.message.reply_text('You can always type quit to end the conversation!')
 
 
 def help_command(update, context):
-    update.message.reply_text('You can always talk to me! ')
+    update.message.reply_text('You can use /start to begin')
+    update.message.reply_text("You can type 'quit' to end")
 
 
 def handle_message(update, context):
     user_id = update.message.chat.id
     text = str(update.message.text).lower()
     response = Tb.responses(text, user_id)
-    print(response)
+    # print(response)
     update.message.reply_text(response)
 
 
@@ -30,7 +31,6 @@ def error(update, context):
 
 
 def main():
-
     dp = updater.dispatcher
 
     dp.add_handler(CommandHandler("start", start_command))
