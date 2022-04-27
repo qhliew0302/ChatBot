@@ -1,4 +1,4 @@
-In a python enviroment install the following libraries - 
+In a python enviroment (3.8 or below) install the following libraries - 
 
 json
 random
